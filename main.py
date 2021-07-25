@@ -35,6 +35,9 @@ def gui_component_creation():
     delete_selected_button = create_label_or_button(Button, "Delete Selected", 6, 3)
     close_button = create_label_or_button(Button, "Close", 7, 3)
 
+    # Creates textbox to display info on all books
+    book_info_textbox = create_textbox(8, 40, 3, 5, 0, 3)
+
 def create_label_or_button(function, component_text, row_num, col_num):
 
     # This function creates the labels for the user interface
@@ -48,6 +51,13 @@ def create_entry_fields(text_variable, row_num, col_num):
     created_entry = Entry(window, textvariable = text_variable)
     created_entry.grid(row = row_num, column = col_num)
     return created_entry
+
+def create_textbox(height_num, width_num, row_num, row_span_num, col_num, col_span_num):
+
+    # This function creates a textbox to display information
+    created_textbox = Text(window, height = height_num, width = width_num)
+    created_textbox.grid(row = row_num, rowspan = row_span_num, column = col_num, columnspan = col_span_num)
+    return created_textbox
 
 # Creates all window components
 gui_component_creation()
