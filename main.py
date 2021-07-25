@@ -38,7 +38,7 @@ def gui_component_creation():
 def create_label_or_button(function, component_text, row_num, col_num):
 
     # This function creates the labels for the user interface
-    created_component = function(window, text = component_text)
+    created_component = function(window, text = component_text, width = 15)
     created_component.grid(row = row_num, column = col_num)
     return created_component
 
@@ -49,9 +49,6 @@ def create_entry_fields(text_variable, row_num, col_num):
     created_entry.grid(row = row_num, column = col_num)
     return created_entry
 
-# Sets window size
-window.geometry("500x500")
-
 # Creates all window components
 gui_component_creation()
 
@@ -59,5 +56,5 @@ gui_component_creation()
 window.columnconfigure(0, weight = 1)
 window.columnconfigure(2, weight = 1)
 
-# Tkinter boilerplate to create gui
+# Tkinter boilerplate to run gui
 window.mainloop()
