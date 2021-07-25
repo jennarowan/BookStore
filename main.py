@@ -1,4 +1,4 @@
-# This program builds a desktop program to hold book data for a fictional book store
+# This program builds a desktop program to hold book data for a fictional book store using Tkinter
 
 from tkinter import *
 
@@ -41,6 +41,27 @@ def create_entry_fields():
     isbn_entry = Entry(window, textvariable = isbn_entry_value)
     isbn_entry.grid(row = 1, column = 3)
 
+def create_buttons():
+
+    # This function creates all the buttons
+    view_all_button = Button(window, text = "View All")
+    view_all_button.grid(row = 2, column = 3)
+
+    search_entry_button = Button(window, text = "Search Entry")
+    search_entry_button.grid(row = 3, column = 3)
+
+    add_entry_button = Button(window, text = "Add Entry")
+    add_entry_button.grid(row = 4, column = 3)
+
+    update_selected_button = Button(window, text = "Update Selected")
+    update_selected_button.grid(row = 5, column = 3)
+
+    delete_selected_button = Button(window, text = "Delete Selected")
+    delete_selected_button.grid(row = 6, column = 3)
+
+    close_button = Button(window, text = "Close")
+    close_button.grid(row = 7, column = 3)
+
 
 # Sets window size
 window.geometry("500x500")
@@ -48,6 +69,11 @@ window.geometry("500x500")
 # Runs GUI creation functions
 create_labels()
 create_entry_fields()
+create_buttons()
+
+# Gives label columns a bit of padding for the sake of a cleaner UI
+window.columnconfigure(0, weight = 1)
+window.columnconfigure(2, weight = 1)
 
 # Tkinter boilerplate to create gui
 window.mainloop()
