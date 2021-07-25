@@ -41,35 +41,28 @@ def create_entry_fields():
     isbn_entry = Entry(window, textvariable = isbn_entry_value)
     isbn_entry.grid(row = 1, column = 3)
 
-def create_buttons():
+def create_buttons(button_text, row_num, col_num):
 
     # This function creates all the buttons
-    view_all_button = Button(window, text = "View All")
-    view_all_button.grid(row = 2, column = 3)
-
-    search_entry_button = Button(window, text = "Search Entry")
-    search_entry_button.grid(row = 3, column = 3)
-
-    add_entry_button = Button(window, text = "Add Entry")
-    add_entry_button.grid(row = 4, column = 3)
-
-    update_selected_button = Button(window, text = "Update Selected")
-    update_selected_button.grid(row = 5, column = 3)
-
-    delete_selected_button = Button(window, text = "Delete Selected")
-    delete_selected_button.grid(row = 6, column = 3)
-
-    close_button = Button(window, text = "Close")
-    close_button.grid(row = 7, column = 3)
+    created_button = Button(window, text = button_text)
+    created_button.grid(row = row_num, column = col_num)
+    return created_button
 
 
 # Sets window size
 window.geometry("500x500")
 
+# Creates buttons for all the functions
+view_all_button = create_buttons("View All", 2, 3)
+search_entry_button = create_buttons("Search Entry", 3, 3)
+add_entry_button = create_buttons("Add Entry", 4, 3)
+update_selected_button = create_buttons("Update Selected", 5, 3)
+delete_selected_button = create_buttons("Delete Selected", 6, 3)
+close_button = create_buttons("Close", 7, 3)
+
 # Runs GUI creation functions
 create_labels()
 create_entry_fields()
-create_buttons()
 
 # Gives label columns a bit of padding for the sake of a cleaner UI
 window.columnconfigure(0, weight = 1)
