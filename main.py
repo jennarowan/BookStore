@@ -59,12 +59,13 @@ def create_textbox(height_num, width_num, row_num, row_span_num, col_num, col_sp
     created_textbox.grid(row = row_num, rowspan = row_span_num, column = col_num, columnspan = col_span_num)
     return created_textbox
 
+# Displays title at the top of the window and taskbar, book icon in taskbar
+window.title("Book Store App")
+window_photo = PhotoImage(file = "book.png")
+window.iconphoto(False, window_photo)
+
 # Creates all window components
 gui_component_creation()
-
-# Gives label columns a bit of padding for the sake of a cleaner UI
-window.columnconfigure(0, weight = 1)
-window.columnconfigure(2, weight = 1)
 
 # Tkinter boilerplate to run gui
 window.mainloop()
