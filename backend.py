@@ -17,6 +17,7 @@ def connect_to_db():
 
 def add_entry(title, author, year, isbn):
 
+    # This function adds a book entry to the database
     db_connection = sqlite3.connect("books.db")
     db_cursor = db_connection.cursor()
 
@@ -27,6 +28,7 @@ def add_entry(title, author, year, isbn):
 
 def view_all():
     
+    # This function returns all current database entries
     db_connection = sqlite3.connect("books.db")
     db_cursor = db_connection.cursor()
 
@@ -36,6 +38,34 @@ def view_all():
 
     db_connection.close()
     return rows
+
+def search_entry(title = "", author = "", year = "", isbn = ""):
+
+    # This function searches for a book using information entered by the user
+    db_connection = sqlite3.connect("books.db")
+    db_cursor = db_connection.cursor()
+
+    db_cursor.execute("SELECT * FROM book_list WHERE title = ? OR author = ? OR year = ? OR isbn = ?",(title, author, year, isbn))
+
+    rows = db_cursor.fetchall()
+
+    db_connection.close()
+    return rows
+
+def delete_entry(id):
+
+    # This function finds whichever row a user highlights in the book listbox and removes it from the database
+    db_connection = sqlite3.connect("books.db")
+    db_cursor = db_connection.cursor()
+
+    db_cursor.execute("DELETE FROM book_list WHERE id = ?" (id,))
+
+    db_connection.commit()
+    db_connection.close()
+
+def update_entry():
+
+
 
 # Runs when the main frontend file is open to establish the database connection
 connect_to_db()
