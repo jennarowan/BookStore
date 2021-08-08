@@ -63,9 +63,16 @@ def delete_entry(id):
     db_connection.commit()
     db_connection.close()
 
-def update_entry():
+def update_entry(id, title, author, year, isbn):
 
+    # This function finds whichever row a user highlights in the book listbox and updates it in the database with whatever new information was provided
+    db_connection = sqlite3.connect("books.db")
+    db_cursor = db_connection.cursor()
 
+    db_cursor.execute("UPDATE book_list SET title = ?, author = ?, year = ?, isbn = ? WHERE id = ?" (title, author, year, isbn, id))
+
+    db_connection.commit()
+    db_connection.close()
 
 # Runs when the main frontend file is open to establish the database connection
 connect_to_db()
