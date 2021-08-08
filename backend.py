@@ -10,7 +10,7 @@ def connect_to_db():
     db_connection = sqlite3.connect("books.db")
     db_cursor = db_connection.cursor()
 
-    db_cursor.execute("CREATE TABLE IF NOT EXISTS book_list (id_number PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER")
+    db_cursor.execute("CREATE TABLE IF NOT EXISTS book_list (id_number PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
 
     db_connection.commit()
     db_connection.close()
