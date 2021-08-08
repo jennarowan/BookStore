@@ -30,8 +30,8 @@ def gui_component_creation():
 
     # Creates all the entry fields
     title_entry = create_entry_fields(title_entry_value, 0, 1)
-    year_entry = create_entry_fields(year_entry_value, 1, 1)
     author_entry = create_entry_fields(author_entry_value, 0, 3)
+    year_entry = create_entry_fields(year_entry_value, 1, 1)    
     isbn_entry = create_entry_fields(isbn_entry_value, 1, 3)
 
     # Creates buttons for all the functions
