@@ -7,6 +7,7 @@ A user can view the records, search for an entry, add/update/delete entries, and
 """
 
 from tkinter import *
+import backend
 
 # Tkinter boilerplate to create gui
 window = Tk()
@@ -45,7 +46,7 @@ def gui_component_creation():
     book_info_listbox = create_listbox(8, 40, 3, 5, 0, 2)
 
     # Creates scrollbar for listbox and assigns it
-    book_info_scrollbar = create_scrollbar(3, 2)
+    book_info_scrollbar = create_scrollbar(3, 6, 2)
     assign_y_scrollbar(book_info_listbox, book_info_scrollbar)
 
 def create_label_or_button(function, component_text, row_num, col_num):
@@ -69,11 +70,11 @@ def create_listbox(height_num, width_num, row_num, row_span_num, col_num, col_sp
     created_listbox.grid(row = row_num, rowspan = row_span_num, column = col_num, columnspan = col_span_num)
     return created_listbox
 
-def create_scrollbar(row_num, col_num):
+def create_scrollbar(row_num, row_span_num, col_num):
 
     # This functions creates scrollbars
     created_scrollbar = Scrollbar(window)
-    created_scrollbar.grid(row = row_num, column = col_num)
+    created_scrollbar.grid(row = row_num, rowspan = row_span_num, column = col_num)
     return created_scrollbar
 
 def assign_y_scrollbar(component_to_assign_to, scrollbar_to_assign):
