@@ -36,11 +36,11 @@ def gui_component_creation():
 
     # Creates buttons for all the functions
     view_all_button = create_button("View All", 2, 3, view_all_command)
-    search_entry_button = create_button("Search Entry", 3, 3, backend.search_entry)
-    add_entry_button = create_button("Add Entry", 4, 3, backend.add_entry)
+    search_entry_button = create_button("Search Entry", 3, 3, search_entry_command)
+    add_entry_button = create_button("Add Entry", 4, 3, add_entry_command)
     update_selected_button = create_button("Update Selected", 5, 3, backend.update_entry)
     delete_selected_button = create_button("Delete Selected", 6, 3, backend.delete_entry)
-    close_button = create_button("Close", 7, 3, view_all_command)
+    close_button = create_button("Close", 7, 3)
 
     # Creates listbox to display info on all books; given global scope to be used in the view_all_command() function
     global book_info_listbox 
@@ -57,7 +57,7 @@ def create_label(component_text, row_num, col_num):
     created_component.grid(row = row_num, column = col_num)
     return created_component
 
-def create_button(component_text, row_num, col_num, button_command):
+def create_button(component_text, row_num, col_num, button_command = ""):
 
     # This function creates the buttons for the user interface
     created_component = Button(window, text = component_text, width = 15, command = button_command)
@@ -93,12 +93,36 @@ def assign_y_scrollbar(component_to_assign_to, scrollbar_to_assign):
 
 def view_all_command():
 
-    # This function fetches all existing records from the database and populates the GUI listbox with the data
+    # This function fetches all existing records from the database and populates the GUI listbox with the data in conjunction with the view_all() function from backend.py
+
+    # Clears any existing information in listbox
+    book_info_listbox.delete(0, END)
 
     # Each row is placed at the end of the listbox
     for row in backend.view_all():
 
         book_info_listbox.insert(END, row)
+
+def search_entry_command():
+
+    # This function clears the listbox and repopulates it with the information for the book, author, year, and/or isbn entered by the user, in conjunction with the search_entry() function from backend.py
+
+    # Clears any existing information in listbox
+    book_info_listbox.delete(0, END)
+
+    # Each row is placed at the end of the listbox
+    for row in backend.search_entry(author_entry_value.get(), title_entry_value.get(), year_entry_value.get(), isbn_entry_value.get()):
+
+        book_info_listbox.insert(END, row)
+
+def add_entry_command():
+
+    # This function grabs all the text entry values and adds them to the database in conjunction with the add_entry() function from backend.py
+
+    backend.add_entry(author_entry_value.get(), title_entry_value.get(), year_entry_value.get(), isbn_entry_value.get())
+
+    # Repopulates listbox to include new book
+    view_all_command()
 
 # Displays title at the top of the window and taskbar, book icon in taskbar
 window.title("Book Store App")
