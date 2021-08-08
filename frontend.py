@@ -23,10 +23,10 @@ def gui_component_creation():
     # This function creates all the components in the GUI
 
     # Creates all the labels
-    title_label = create_label_or_button(Label, "Title", 0, 0)
-    year_label = create_label_or_button(Label, "Year", 1, 0)
-    author_label = create_label_or_button(Label, "Author", 0, 2)
-    isbn_label = create_label_or_button(Label, "ISBN", 1, 2)
+    title_label = create_label(Label, "Title", 0, 0)
+    year_label = create_label(Label, "Year", 1, 0)
+    author_label = create_label(Label, "Author", 0, 2)
+    isbn_label = create_label(Label, "ISBN", 1, 2)
 
     # Creates all the entry fields
     title_entry = create_entry_fields(title_entry_value, 0, 1)
@@ -35,12 +35,12 @@ def gui_component_creation():
     isbn_entry = create_entry_fields(isbn_entry_value, 1, 3)
 
     # Creates buttons for all the functions
-    view_all_button = create_label_or_button(Button, "View All", 2, 3)
-    search_entry_button = create_label_or_button(Button, "Search Entry", 3, 3)
-    add_entry_button = create_label_or_button(Button, "Add Entry", 4, 3)
-    update_selected_button = create_label_or_button(Button, "Update Selected", 5, 3)
-    delete_selected_button = create_label_or_button(Button, "Delete Selected", 6, 3)
-    close_button = create_label_or_button(Button, "Close", 7, 3)
+    view_all_button = create_button("View All", 2, 3, backend.view_all)
+    search_entry_button = create_button("Search Entry", 3, 3, backend.search_entry)
+    add_entry_button = create_button("Add Entry", 4, 3, backend.add_entry)
+    update_selected_button = create_button("Update Selected", 5, 3, backend.update_entry)
+    delete_selected_button = create_button("Delete Selected", 6, 3, backend.delete_entry)
+    close_button = create_button("Close", 7, 3)
 
     # Creates listbox to display info on all books
     book_info_listbox = create_listbox(8, 40, 3, 5, 0, 2)
@@ -49,10 +49,17 @@ def gui_component_creation():
     book_info_scrollbar = create_scrollbar(3, 6, 2)
     assign_y_scrollbar(book_info_listbox, book_info_scrollbar)
 
-def create_label_or_button(function, component_text, row_num, col_num):
+def create_label(component_text, row_num, col_num):
 
     # This function creates the labels for the user interface
-    created_component = function(window, text = component_text, width = 15)
+    created_component = Label(window, text = component_text, width = 15, command = "")
+    created_component.grid(row = row_num, column = col_num)
+    return created_component
+
+def create_button(component_text, row_num, col_num, button_command):
+
+    # This function creates the buttons for the user interface
+    created_component = Button(window, text = component_text, width = 15, command = button_command)
     created_component.grid(row = row_num, column = col_num)
     return created_component
 
